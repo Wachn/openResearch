@@ -1,0 +1,21 @@
+{
+  "title": "Synthesis Report",
+  "mode": "standard report",
+  "confidence": "medium",
+  "topic": "retrieval refinement and verifiable rewards for long-horizon agents",
+  "key_findings": [
+    "retrieval should be refined during reasoning rather than treated as a static pre-step",
+    "verifiable rewards improve confidence when the task has measurable criteria",
+    "memory-heavy agents need better retrieval timing and evidence control"
+  ],
+  "tradeoffs": [
+    "better retrieval can increase latency",
+    "verification depends on task measurability",
+    "memory systems add coordination overhead"
+  ],
+  "next_steps": [
+    "read more memory-focused papers",
+    "run synthesis again on the expanded note set",
+    "hand the packet to paper-writer"
+  ]
+}

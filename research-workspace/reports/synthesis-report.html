@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Synthesis Report | openResearch Workspace</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f1117;
+      --panel: #1a1d27;
+      --panel2: #141620;
+      --border: rgba(255,255,255,0.08);
+      --accent: #6c5ce7;
+      --accent2: #00cec9;
+      --accent3: #fd79a8;
+      --text: #e2e8f0;
+      --muted: #8892a8;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Noto Sans SC", system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 32px; }
+    .hero { border: 1px solid var(--border); border-radius: 22px; padding: 28px; margin-bottom: 22px; background: linear-gradient(135deg, rgba(108,92,231,0.15), rgba(0,206,201,0.08)); }
+    .hero h1 { margin: 0 0 10px; font-size: 34px; }
+    .hero p { margin: 0; color: var(--muted); line-height: 1.7; }
+    .bar { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .pill { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); color: var(--muted); }
+    .layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; }
+    .nav, .content section { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; }
+    .nav { padding: 18px; position: sticky; top: 20px; height: fit-content; }
+    .nav button { width: 100%; text-align: left; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--text); cursor: pointer; margin-bottom: 10px; }
+    .nav button.active { border-color: rgba(108,92,231,0.45); background: rgba(108,92,231,0.12); }
+    .content { display: grid; gap: 18px; }
+    .content section { padding: 22px; }
+    h2 { margin: 0 0 14px; }
+    p, li { color: var(--muted); line-height: 1.7; }
+    ul { margin: 0; padding-left: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .card { border-radius: 14px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); padding: 16px; }
+    .hidden { display: none; }
+    @media (max-width: 900px) { .layout, .grid { grid-template-columns: 1fr; } .nav { position: static; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Synthesis Report</h1>
+      <p>An abridged, publish-ready synthesis built from paper-reader notes, profile guidance, and evidence aggregation for long-horizon agent research.</p>
+      <div class="bar">
+        <span class="pill">Mode: standard report</span>
+        <span class="pill">Confidence: medium</span>
+        <span class="pill">Sources: 6 condensed artifacts</span>
+      </div>
+    </section>
+    <div class="layout">
+      <aside class="nav">
+        <button type="button" class="active" data-target="summary">Executive summary</button>
+        <button type="button" data-target="findings">Key findings</button>
+        <button type="button" data-target="tradeoffs">Tradeoffs</button>
+        <button type="button" data-target="next">Next steps</button>
+      </aside>
+      <main class="content">
+        <section id="summary">
+          <h2>Executive summary</h2>
+          <p>Across the current source set, the strongest repeated signal is that retrieval quality should be refined during reasoning rather than treated as a static pre-processing step. This matters because memory-heavy agents and long-horizon planning tasks both suffer when retrieved evidence is noisy or mistimed.</p>
+        </section>
+        <section id="findings" class="hidden">
+          <h2>Key findings</h2>
+          <div class="grid">
+            <div class="card"><strong>Retrieval refinement matters</strong><p>AutoRefine-style workflows improve multi-hop reasoning by refining evidence inside the reasoning chain.</p></div>
+            <div class="card"><strong>Verification signals are useful</strong><p>Verifiable rewards create a cleaner route for training or evaluating agent reasoning than broad reward heuristics.</p></div>
+          </div>
+        </section>
+        <section id="tradeoffs" class="hidden">
+          <h2>Tradeoffs</h2>
+          <ul>
+            <li>Better retrieval usually adds latency or orchestration overhead.</li>
+            <li>Verification improves trust, but only when the task has measurable criteria.</li>
+            <li>Memory-heavy agent pipelines gain context depth but increase state-management complexity.</li>
+          </ul>
+        </section>
+        <section id="next" class="hidden">
+          <h2>Next steps</h2>
+          <ul>
+            <li>Read and condense two more memory-focused papers through `paper-reader`.</li>
+            <li>Merge those notes through `synthesis` before committing to a manuscript outline.</li>
+            <li>Send the resulting packet into `paper-writer` for an experiment-oriented outline.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script>
+    const buttons = document.querySelectorAll('[data-target]');
+    const sections = document.querySelectorAll('main section');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(item => {
+          item.classList.remove('active');
+        });
+        sections.forEach(section => {
+          section.classList.add('hidden');
+        });
+        button.classList.add('active');
+        document.getElementById(button.dataset.target).classList.remove('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
