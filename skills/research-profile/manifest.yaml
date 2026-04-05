@@ -1,0 +1,22 @@
+name: research-profile
+kind: skill
+category: analysis
+description: maintains the active research direction, seed papers, authors, and topic preferences
+  that personalize discovery, reading, and idea generation.
+links:
+  calls:
+  - report-packager
+  reads_context:
+  - project/AGENTS.md
+  - rules/research.mdc
+capabilities:
+  requires: []
+artifacts:
+  consumes:
+  - research.request
+  produces:
+  - research.profile
+  - profile.dashboard
+  - published.report
+ui:
+  group: analysis

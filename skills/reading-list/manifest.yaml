@@ -1,0 +1,25 @@
+name: reading-list
+kind: skill
+category: orchestration
+description: maintains a structured reading list and dashboard view for to-read, reading,
+  and done research items.
+links:
+  calls:
+  - paper-reader
+  - research-profile
+  - report-packager
+  reads_context:
+  - project/AGENTS.md
+capabilities:
+  requires: []
+artifacts:
+  consumes:
+  - reading.queue
+  - reading.note
+  - research.profile
+  produces:
+  - reading.list
+  - reading.dashboard
+  - published.report
+ui:
+  group: app

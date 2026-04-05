@@ -1,0 +1,28 @@
+name: synthesis
+kind: skill
+category: analysis
+description: condenses reading notes, extracted web corpora, and evidence packets into
+  synthesis packets that can drive deep-dive reports, tradeoff analysis, and published outputs.
+links:
+  calls:
+  - paper-reader
+  - web-corpus-builder
+  - evidence-matrix
+  reads_context:
+  - rules/research.mdc
+  - rules/writing.mdc
+capabilities:
+  requires: []
+artifacts:
+  consumes:
+  - reading.note
+  - note.packet
+  - corpus.queue
+  - evidence.packet
+  - comparison.packet
+  - research.profile
+  produces:
+  - synthesis.packet
+  - synthesis.brief
+ui:
+  group: analysis

@@ -1,0 +1,26 @@
+name: paper-reader
+kind: skill
+category: analysis
+description: deep reading skill that turns a paper into a structured note with metadata,
+  core claim, method, evidence, figures, and next steps.
+links:
+  calls:
+  - research-profile
+  - report-packager
+  reads_context:
+  - rules/research.mdc
+capabilities:
+  requires:
+  - web.extract
+  - scholar.search
+  - citation.lookup
+artifacts:
+  consumes:
+  - corpus.queue
+  - research.profile
+  produces:
+  - reading.note
+  - note.packet
+  - published.report
+ui:
+  group: analysis

@@ -1,0 +1,26 @@
+name: idea-generator
+kind: skill
+category: analysis
+description: generates research ideas by connecting reading notes, evidence gaps, and research-profile
+  preferences into actionable project directions.
+links:
+  calls:
+  - reading-list
+  - research-profile
+  - synthesis
+  - novelty-gap-finder
+  reads_context:
+  - rules/research.mdc
+capabilities:
+  requires: []
+artifacts:
+  consumes:
+  - reading.list
+  - reading.note
+  - synthesis.packet
+  - evidence.packet
+  - research.profile
+  produces:
+  - idea.packet
+ui:
+  group: analysis

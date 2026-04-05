@@ -1,0 +1,24 @@
+name: research-hub-and-graph
+kind: skill
+category: orchestration
+description: portable implementation playbook for extending the openResearch research
+  hub and graph studio into a dynamic, reviewable workspace.
+links:
+  calls: []
+  reads_context:
+  - project/AGENTS.md
+  - rules/research.mdc
+  - rules/writing.mdc
+capabilities:
+  requires: []
+artifacts:
+  consumes:
+  - ui.requirements
+  - graph.payload
+  - workspace.assets
+  produces:
+  - hub.patch.plan
+  - graph.ui.patch
+  - workspace.templates
+ui:
+  group: app

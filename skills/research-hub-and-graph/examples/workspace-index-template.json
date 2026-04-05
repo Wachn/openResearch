@@ -1,0 +1,28 @@
+{
+  "root": "research-workspace/",
+  "stats": [
+    { "label": "Tracked assets", "value": 0, "tone": "purple" },
+    { "label": "Reports", "value": 0, "tone": "cyan" },
+    { "label": "Literature notes", "value": 0, "tone": "yellow" },
+    { "label": "Libraries", "value": 0, "tone": "pink" }
+  ],
+  "sections": [
+    {
+      "key": "reports",
+      "label": "Compiled reports",
+      "tone": "purple",
+      "description": "Markdown, HTML, or packaged outputs.",
+      "count": 0,
+      "items": []
+    }
+  ],
+  "storage": [
+    {
+      "path": "research-workspace/reports/",
+      "label": "Report artifacts",
+      "count": 0,
+      "size": 0
+    }
+  ],
+  "featured": null
+}
