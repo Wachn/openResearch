@@ -34,130 +34,6 @@ window.OPENRESEARCH_GRAPH = {
       "size": 14
     },
     {
-      "id": "top:.playwright-mcp",
-      "label": ".playwright-mcp",
-      "type": "module"
-    },
-    {
-      "id": "file:.playwright-mcp/console-2026-04-05T04-51-53-843Z.log",
-      "label": "console-2026-04-05T04-51-53-843Z.log",
-      "type": "file",
-      "path": ".playwright-mcp/console-2026-04-05T04-51-53-843Z.log",
-      "size": 2742
-    },
-    {
-      "id": "file:.playwright-mcp/console-2026-04-05T04-53-55-923Z.log",
-      "label": "console-2026-04-05T04-53-55-923Z.log",
-      "type": "file",
-      "path": ".playwright-mcp/console-2026-04-05T04-53-55-923Z.log",
-      "size": 546
-    },
-    {
-      "id": "file:.playwright-mcp/console-2026-04-05T06-34-24-348Z.log",
-      "label": "console-2026-04-05T06-34-24-348Z.log",
-      "type": "file",
-      "path": ".playwright-mcp/console-2026-04-05T06-34-24-348Z.log",
-      "size": 143
-    },
-    {
-      "id": "file:.playwright-mcp/console-2026-04-05T13-13-33-930Z.log",
-      "label": "console-2026-04-05T13-13-33-930Z.log",
-      "type": "file",
-      "path": ".playwright-mcp/console-2026-04-05T13-13-33-930Z.log",
-      "size": 330
-    },
-    {
-      "id": "file:.playwright-mcp/console-2026-04-05T13-14-42-274Z.log",
-      "label": "console-2026-04-05T13-14-42-274Z.log",
-      "type": "file",
-      "path": ".playwright-mcp/console-2026-04-05T13-14-42-274Z.log",
-      "size": 187
-    },
-    {
-      "id": "file:.playwright-mcp/console-2026-04-05T13-15-32-969Z.log",
-      "label": "console-2026-04-05T13-15-32-969Z.log",
-      "type": "file",
-      "path": ".playwright-mcp/console-2026-04-05T13-15-32-969Z.log",
-      "size": 374
-    },
-    {
-      "id": "file:.playwright-mcp/page-2026-04-05T04-51-54-792Z.yml",
-      "label": "page-2026-04-05T04-51-54-792Z.yml",
-      "type": "file",
-      "path": ".playwright-mcp/page-2026-04-05T04-51-54-792Z.yml",
-      "size": 4258
-    },
-    {
-      "id": "file:.playwright-mcp/page-2026-04-05T04-52-30-014Z.yml",
-      "label": "page-2026-04-05T04-52-30-014Z.yml",
-      "type": "file",
-      "path": ".playwright-mcp/page-2026-04-05T04-52-30-014Z.yml",
-      "size": 4269
-    },
-    {
-      "id": "file:.playwright-mcp/page-2026-04-05T04-53-58-015Z.yml",
-      "label": "page-2026-04-05T04-53-58-015Z.yml",
-      "type": "file",
-      "path": ".playwright-mcp/page-2026-04-05T04-53-58-015Z.yml",
-      "size": 8694
-    },
-    {
-      "id": "file:.playwright-mcp/page-2026-04-05T06-34-25-773Z.yml",
-      "label": "page-2026-04-05T06-34-25-773Z.yml",
-      "type": "file",
-      "path": ".playwright-mcp/page-2026-04-05T06-34-25-773Z.yml",
-      "size": 3445
-    },
-    {
-      "id": "file:.playwright-mcp/page-2026-04-05T06-37-55-549Z.yml",
-      "label": "page-2026-04-05T06-37-55-549Z.yml",
-      "type": "file",
-      "path": ".playwright-mcp/page-2026-04-05T06-37-55-549Z.yml",
-      "size": 3445
-    },
-    {
-      "id": "file:.playwright-mcp/page-2026-04-05T13-13-37-504Z.yml",
-      "label": "page-2026-04-05T13-13-37-504Z.yml",
-      "type": "file",
-      "path": ".playwright-mcp/page-2026-04-05T13-13-37-504Z.yml",
-      "size": 6329
-    },
-    {
-      "id": "file:.playwright-mcp/page-2026-04-05T13-14-06-100Z.yml",
-      "label": "page-2026-04-05T13-14-06-100Z.yml",
-      "type": "file",
-      "path": ".playwright-mcp/page-2026-04-05T13-14-06-100Z.yml",
-      "size": 1129
-    },
-    {
-      "id": "file:.playwright-mcp/page-2026-04-05T13-14-42-481Z.yml",
-      "label": "page-2026-04-05T13-14-42-481Z.yml",
-      "type": "file",
-      "path": ".playwright-mcp/page-2026-04-05T13-14-42-481Z.yml",
-      "size": 6329
-    },
-    {
-      "id": "file:.playwright-mcp/page-2026-04-05T13-15-03-491Z.yml",
-      "label": "page-2026-04-05T13-15-03-491Z.yml",
-      "type": "file",
-      "path": ".playwright-mcp/page-2026-04-05T13-15-03-491Z.yml",
-      "size": 1129
-    },
-    {
-      "id": "file:.playwright-mcp/page-2026-04-05T13-15-33-162Z.yml",
-      "label": "page-2026-04-05T13-15-33-162Z.yml",
-      "type": "file",
-      "path": ".playwright-mcp/page-2026-04-05T13-15-33-162Z.yml",
-      "size": 6329
-    },
-    {
-      "id": "file:.playwright-mcp/page-2026-04-05T13-18-29-004Z.yml",
-      "label": "page-2026-04-05T13-18-29-004Z.yml",
-      "type": "file",
-      "path": ".playwright-mcp/page-2026-04-05T13-18-29-004Z.yml",
-      "size": 6493
-    },
-    {
       "id": "top:agents",
       "label": "agents",
       "type": "module"
@@ -233,7 +109,7 @@ window.OPENRESEARCH_GRAPH = {
       "label": "graph.data.js",
       "type": "app",
       "path": "apps/graph-studio/graph.data.js",
-      "size": 136536
+      "size": 139061
     },
     {
       "id": "file:apps/graph-studio/index.html",
@@ -268,14 +144,7 @@ window.OPENRESEARCH_GRAPH = {
       "label": "index.html",
       "type": "app",
       "path": "apps/research-hub/static/index.html",
-      "size": 11315
-    },
-    {
-      "id": "file:apps/research-hub/static/index.html.backup",
-      "label": "index.html.backup",
-      "type": "app",
-      "path": "apps/research-hub/static/index.html.backup",
-      "size": 6207
+      "size": 11292
     },
     {
       "id": "file:apps/research-hub/static/styles.css",
@@ -283,13 +152,6 @@ window.OPENRESEARCH_GRAPH = {
       "type": "app",
       "path": "apps/research-hub/static/styles.css",
       "size": 22772
-    },
-    {
-      "id": "file:apps/research-hub/static/styles.css.backup",
-      "label": "styles.css.backup",
-      "type": "app",
-      "path": "apps/research-hub/static/styles.css.backup",
-      "size": 13903
     },
     {
       "id": "top:contexts",
@@ -393,19 +255,7 @@ window.OPENRESEARCH_GRAPH = {
       "label": "openresearch.graph.json",
       "type": "graph",
       "path": "graph/compiled/openresearch.graph.json",
-      "size": 136505
-    },
-    {
-      "id": "top:hub-server.log",
-      "label": "hub-server.log",
-      "type": "module"
-    },
-    {
-      "id": "file:hub-server.log",
-      "label": "hub-server.log",
-      "type": "file",
-      "path": "hub-server.log",
-      "size": 0
+      "size": 139030
     },
     {
       "id": "top:Makefile",
@@ -1873,7 +1723,7 @@ window.OPENRESEARCH_GRAPH = {
       "label": "research-profile.yaml",
       "type": "workspace",
       "path": "research-workspace/db/research-profile.yaml",
-      "size": 208
+      "size": 398
     },
     {
       "id": "file:research-workspace/notes/.gitkeep",
@@ -1915,7 +1765,7 @@ window.OPENRESEARCH_GRAPH = {
       "label": "reading-list.html",
       "type": "workspace",
       "path": "research-workspace/reports/reading-list.html",
-      "size": 586
+      "size": 4850
     },
     {
       "id": "file:research-workspace/reports/research-profile.html",
@@ -1929,7 +1779,7 @@ window.OPENRESEARCH_GRAPH = {
       "label": "research-profile.md",
       "type": "workspace",
       "path": "research-workspace/reports/research-profile.md",
-      "size": 336
+      "size": 300
     },
     {
       "id": "file:research-workspace/reports/synthesis-report.html",
@@ -2303,7 +2153,7 @@ window.OPENRESEARCH_GRAPH = {
       "label": "SKILL.md",
       "type": "skill",
       "path": "skills/research-pi/SKILL.md",
-      "size": 59643
+      "size": 59831
     },
     {
       "id": "skill:research-pi",
@@ -2353,7 +2203,7 @@ window.OPENRESEARCH_GRAPH = {
       "label": "manifest.yaml",
       "type": "skill",
       "path": "skills/synthesis/manifest.yaml",
-      "size": 608
+      "size": 628
     },
     {
       "id": "file:skills/synthesis/SKILL.md",
@@ -2439,18 +2289,6 @@ window.OPENRESEARCH_GRAPH = {
       "type": "tool",
       "path": "tools/manifests/tavily-web-search.yaml",
       "size": 219
-    },
-    {
-      "id": "top:uv.lock",
-      "label": "uv.lock",
-      "type": "module"
-    },
-    {
-      "id": "file:uv.lock",
-      "label": "uv.lock",
-      "type": "file",
-      "path": "uv.lock",
-      "size": 18798
     }
   ],
   "edges": [
@@ -2472,96 +2310,6 @@ window.OPENRESEARCH_GRAPH = {
     {
       "source": "top:.gitignore",
       "target": "file:.gitignore",
-      "kind": "contains"
-    },
-    {
-      "source": "repo:openresearch",
-      "target": "top:.playwright-mcp",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/console-2026-04-05T04-51-53-843Z.log",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/console-2026-04-05T04-53-55-923Z.log",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/console-2026-04-05T06-34-24-348Z.log",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/console-2026-04-05T13-13-33-930Z.log",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/console-2026-04-05T13-14-42-274Z.log",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/console-2026-04-05T13-15-32-969Z.log",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/page-2026-04-05T04-51-54-792Z.yml",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/page-2026-04-05T04-52-30-014Z.yml",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/page-2026-04-05T04-53-58-015Z.yml",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/page-2026-04-05T06-34-25-773Z.yml",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/page-2026-04-05T06-37-55-549Z.yml",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/page-2026-04-05T13-13-37-504Z.yml",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/page-2026-04-05T13-14-06-100Z.yml",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/page-2026-04-05T13-14-42-481Z.yml",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/page-2026-04-05T13-15-03-491Z.yml",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/page-2026-04-05T13-15-33-162Z.yml",
-      "kind": "contains"
-    },
-    {
-      "source": "top:.playwright-mcp",
-      "target": "file:.playwright-mcp/page-2026-04-05T13-18-29-004Z.yml",
       "kind": "contains"
     },
     {
@@ -2651,17 +2399,7 @@ window.OPENRESEARCH_GRAPH = {
     },
     {
       "source": "top:apps",
-      "target": "file:apps/research-hub/static/index.html.backup",
-      "kind": "contains"
-    },
-    {
-      "source": "top:apps",
       "target": "file:apps/research-hub/static/styles.css",
-      "kind": "contains"
-    },
-    {
-      "source": "top:apps",
-      "target": "file:apps/research-hub/static/styles.css.backup",
       "kind": "contains"
     },
     {
@@ -2742,16 +2480,6 @@ window.OPENRESEARCH_GRAPH = {
     {
       "source": "top:graph",
       "target": "file:graph/compiled/openresearch.graph.json",
-      "kind": "contains"
-    },
-    {
-      "source": "repo:openresearch",
-      "target": "top:hub-server.log",
-      "kind": "contains"
-    },
-    {
-      "source": "top:hub-server.log",
-      "target": "file:hub-server.log",
       "kind": "contains"
     },
     {
@@ -4473,24 +4201,14 @@ window.OPENRESEARCH_GRAPH = {
       "source": "top:tools",
       "target": "file:tools/manifests/tavily-web-search.yaml",
       "kind": "contains"
-    },
-    {
-      "source": "repo:openresearch",
-      "target": "top:uv.lock",
-      "kind": "contains"
-    },
-    {
-      "source": "top:uv.lock",
-      "target": "file:uv.lock",
-      "kind": "contains"
     }
   ],
   "by_type": {
     "repo": 1,
-    "module": 24,
-    "file": 197,
+    "module": 21,
+    "file": 178,
     "agent": 6,
-    "app": 10,
+    "app": 8,
     "context": 1,
     "doc": 6,
     "example": 4,

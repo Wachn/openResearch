@@ -146,7 +146,7 @@ Related exact skill paths for arXiv-first paper discovery and synthesis:
 - For paper-centric, academic, or technical topics, start with scholarly search.
 - Distinguish facts, inferences, hypotheses, and open questions.
 - State uncertainty when evidence is weak, conflicting, or incomplete.
-- Do not modify local files, repositories, or uploaded documents.
+- Do not modify arbitrary local files, repositories, or uploaded documents during evidence gathering. The only allowed materialized outputs are explicit workspace artifacts produced through linked packaging or workflow skills under `research-workspace/`.
 - Use platform-native citations when available, otherwise use numbered citations with a source list.
 
 ## Trigger Boundary

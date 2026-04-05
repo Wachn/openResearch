@@ -8,6 +8,7 @@ links:
   - paper-reader
   - web-corpus-builder
   - evidence-matrix
+  - report-packager
   reads_context:
   - rules/research.mdc
   - rules/writing.mdc
