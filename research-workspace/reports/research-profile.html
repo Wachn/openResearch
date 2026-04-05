@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research Profile | openResearch Workspace</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f1117;
+      --panel: #1a1d27;
+      --border: rgba(255,255,255,0.08);
+      --accent: #6c5ce7;
+      --accent2: #00cec9;
+      --accent3: #fd79a8;
+      --text: #e2e8f0;
+      --muted: #8892a8;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Noto Sans SC", system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 32px; }
+    .hero, .card { background: var(--panel); border: 1px solid var(--border); border-radius: 20px; }
+    .hero { padding: 28px; margin-bottom: 20px; background: linear-gradient(135deg, rgba(108,92,231,0.12), rgba(0,206,201,0.07)); }
+    h1, h2 { margin: 0 0 12px; }
+    p { color: var(--muted); line-height: 1.7; }
+    .grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; }
+    .card { padding: 20px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); }
+    .seed { display: grid; gap: 10px; }
+    .seed div { padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
+    .stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+    .stat div { padding: 14px; border-radius: 14px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); }
+    .stat strong { display: block; font-size: 24px; margin-bottom: 4px; }
+    @media (max-width: 860px) { .grid, .stat { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Research Profile</h1>
+      <p>Long-term direction: LLM reasoning, agentic memory, retrieval-aware planning, and verifiable reward signals.</p>
+      <div class="stat">
+        <div><strong>4</strong><span>keywords</span></div>
+        <div><strong>2</strong><span>seed papers</span></div>
+        <div><strong>3</strong><span>preferred themes</span></div>
+      </div>
+    </section>
+    <section class="grid">
+      <article class="card">
+        <h2>Keywords</h2>
+        <div class="chips">
+          <span class="chip">LLM reasoning</span>
+          <span class="chip">agentic memory</span>
+          <span class="chip">retrieval refinement</span>
+          <span class="chip">verifiable rewards</span>
+        </div>
+      </article>
+      <article class="card">
+        <h2>Preferred authors</h2>
+        <div class="chips">
+          <span class="chip">Yaorui Shi</span>
+          <span class="chip">An Zhang</span>
+          <span class="chip">Xiang Wang</span>
+        </div>
+      </article>
+      <article class="card">
+        <h2>Seed papers</h2>
+        <div class="seed">
+          <div>AutoRefine: Search and Refine During Think</div>
+          <div>RLVR: Reinforcement Learning with Verifiable Rewards</div>
+        </div>
+      </article>
+      <article class="card">
+        <h2>Learned preferences</h2>
+        <div class="chips">
+          <span class="chip">accept: RL-based reasoning</span>
+          <span class="chip">accept: memory augmentation</span>
+          <span class="chip">reject: pure classification</span>
+        </div>
+      </article>
+    </section>
+  </div>
+</body>
+</html>

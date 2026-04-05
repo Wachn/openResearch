@@ -1,0 +1,19 @@
+research_direction: LLM reasoning, agentic memory, retrieval-aware planning
+seed_papers:
+  - AutoRefine
+  - RLVR
+whitelist_authors:
+  - Yaorui Shi
+  - An Zhang
+learned_preferences:
+  accept:
+    - RL-based reasoning
+    - memory augmentation
+    - verifiable rewards
+  reject:
+    - pure classification
+keywords:
+  - llm reasoning
+  - agentic memory
+  - retrieval refinement
+  - verifiable rewards
