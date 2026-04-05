@@ -1,0 +1,7 @@
+capability: web.search
+provider: tavily
+mode: search
+description: AI-oriented web search fallback for fresh and broad retrieval when the
+  host binds this capability to Tavily.
+reads_context:
+- project/AGENTS.md

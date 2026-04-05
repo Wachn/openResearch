@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Graph Studio</title>
+  <style>
+    body { margin:0; font-family: Inter, system-ui, sans-serif; background:#08111f; color:#e5eefc; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    .card { background: rgba(12,23,41,.78); border:1px solid rgba(148,163,184,.14); border-radius: 18px; padding: 18px; }
+    pre { white-space: pre-wrap; background:#020812; border-radius: 14px; padding:16px; overflow:auto; }
+    a { color:#a5d8ff; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Graph Studio</h1>
+    <p>Minimal graph inspector for the openResearch Hub starter. Use the Hub for navigation and open this page for raw graph payloads.</p>
+    <p><a href="/">Back to Hub</a></p>
+    <div class="card">
+      <h2>Graph payload</h2>
+      <pre id="out">Loading…</pre>
+    </div>
+  </div>
+  <script>
+    fetch('/api/graph').then(r => r.json()).then(data => {
+      document.getElementById('out').textContent = JSON.stringify(data, null, 2);
+    }).catch(err => {
+      document.getElementById('out').textContent = String(err);
+    });
+  </script>
+</body>
+</html>

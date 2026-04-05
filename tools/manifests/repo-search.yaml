@@ -1,0 +1,7 @@
+capability: repo.search
+provider: host-native
+mode: search
+description: Repository and code search capability used for experiment and implementation
+  planning.
+reads_context:
+- project/AGENTS.md

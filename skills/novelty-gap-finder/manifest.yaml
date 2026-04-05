@@ -1,0 +1,20 @@
+name: novelty-gap-finder
+kind: skill
+category: analysis
+description: finds research gaps, novelty signals, and future work opportunities from
+  the evidence packet.
+links:
+  calls:
+  - evidence-matrix
+  reads_context:
+  - rules/research.mdc
+capabilities:
+  requires:
+  - scholar.search
+artifacts:
+  consumes:
+  - evidence.packet
+  produces:
+  - novelty.memo
+ui:
+  group: analysis

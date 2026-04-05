@@ -1,0 +1,7 @@
+---
+globs: ["skills/**/SKILL.md", "agents/profiles/*.md"]
+description: concise writing rules for skills and agent profiles
+---
+- Keep frontmatter structured and minimal.
+- Prefer imperative instructions for skills.
+- Prefer concrete deliverables, workflows, and success metrics for agents.

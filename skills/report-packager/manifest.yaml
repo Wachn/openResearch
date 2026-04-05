@@ -1,0 +1,22 @@
+name: report-packager
+kind: skill
+category: packaging
+description: converts normalized research outputs into markdown, notebook markdown,
+  docx-ready, ppt-ready, or html-ready deliverables.
+links:
+  calls: []
+  reads_context:
+  - rules/writing.mdc
+capabilities:
+  requires:
+  - citation.lookup
+artifacts:
+  consumes:
+  - research.packet
+  - comparison.packet
+  - draft.paper
+  - patent.memo
+  produces:
+  - packaged.report
+ui:
+  group: packaging

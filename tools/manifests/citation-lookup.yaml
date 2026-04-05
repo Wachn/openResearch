@@ -1,0 +1,6 @@
+capability: citation.lookup
+provider: host-native
+mode: lookup
+description: Citation and reference lookup capability bound by the host.
+reads_context:
+- rules/research.mdc

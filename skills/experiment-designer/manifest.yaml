@@ -1,0 +1,21 @@
+name: experiment-designer
+kind: skill
+category: experiments
+description: turns a research packet into an experiment plan with baselines, metrics,
+  and approval points.
+links:
+  calls:
+  - evidence-matrix
+  reads_context:
+  - project/AGENTS.md
+capabilities:
+  requires:
+  - repo.search
+artifacts:
+  consumes:
+  - research.packet
+  - novelty.memo
+  produces:
+  - experiment.plan
+ui:
+  group: experiments

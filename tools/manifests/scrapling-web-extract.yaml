@@ -1,0 +1,7 @@
+capability: web.extract
+provider: scrapling
+mode: extract
+description: Adaptive web extraction for turning specific urls into clean research-ready
+  content chunks.
+reads_context:
+- rules/research.mdc

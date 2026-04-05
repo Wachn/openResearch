@@ -1,0 +1,23 @@
+name: patent-scout
+kind: skill
+category: ip
+description: prior-art and patent-opportunity support from evidence, novelty, and
+  method summaries.
+links:
+  calls:
+  - novelty-gap-finder
+  - evidence-matrix
+  reads_context:
+  - rules/research.mdc
+capabilities:
+  requires:
+  - web.search
+  - citation.lookup
+artifacts:
+  consumes:
+  - research.packet
+  - novelty.memo
+  produces:
+  - patent.memo
+ui:
+  group: ip

@@ -1,0 +1,15 @@
+{
+  // proposed starter binding for an OpenCode-like host
+  "skillsRoot": "./skills",
+  "agentsRoot": "./agents/profiles",
+  "contextFiles": ["./AGENTS.md", "./contexts/project/AGENTS.md"],
+  "rulesRoot": "./rules",
+  "capabilityBindings": {
+    "web.search": "tavily",
+    "web.extract": "scrapling",
+    "web.crawl": "scrapling",
+    "scholar.search": "host-native",
+    "citation.lookup": "host-native",
+    "browser.session": "host-native"
+  }
+}

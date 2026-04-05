@@ -1,0 +1,6 @@
+capability: scholar.search
+provider: host-native
+mode: search
+description: Scholarly or paper retrieval capability bound by the host.
+reads_context:
+- project/AGENTS.md

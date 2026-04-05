@@ -1,0 +1,7 @@
+capability: web.crawl
+provider: scrapling
+mode: crawl
+description: Targeted crawl capability for bounded site traversal when extraction
+  from one page is not enough.
+reads_context:
+- rules/research.mdc

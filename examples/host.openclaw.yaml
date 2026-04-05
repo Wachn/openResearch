@@ -1,0 +1,12 @@
+skills_root: ./skills
+agents_root: ./agents/profiles
+contexts:
+  - ./AGENTS.md
+  - ./contexts/project/AGENTS.md
+rules_root: ./rules
+capability_bindings:
+  web.search: tavily
+  web.extract: scrapling
+  web.crawl: scrapling
+  scholar.search: host-native
+  citation.lookup: host-native

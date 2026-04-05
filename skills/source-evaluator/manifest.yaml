@@ -1,0 +1,20 @@
+name: source-evaluator
+kind: skill
+category: quality
+description: authority, recency, bias, credibility, and corroboration assessment for
+  important sources.
+links:
+  calls: []
+  reads_context:
+  - rules/research.mdc
+capabilities:
+  requires:
+  - citation.lookup
+artifacts:
+  consumes:
+  - corpus.queue
+  - web.corpus
+  produces:
+  - source.assessment
+ui:
+  group: quality

@@ -1,0 +1,14 @@
+project_name: example-iclr-project
+question: Can structured evidence packets improve literature-to-experiment throughput?
+output_mode: standard-report
+preferred_agents:
+  - principal-investigator
+  - librarian
+  - skeptic
+  - experimenter
+preferred_capability_bindings:
+  web.search: tavily
+  web.extract: scrapling
+  web.crawl: scrapling
+  scholar.search: host-native
+  citation.lookup: host-native

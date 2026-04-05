@@ -1,0 +1,21 @@
+name: web-corpus-builder
+kind: skill
+category: retrieval
+description: web extraction and crawl helper that turns search results and target
+  urls into reusable research-ready text chunks.
+links:
+  calls: []
+  reads_context:
+  - rules/research.mdc
+capabilities:
+  requires:
+  - web.extract
+  - web.crawl
+  - browser.session
+artifacts:
+  consumes:
+  - corpus.queue
+  produces:
+  - web.corpus
+ui:
+  group: retrieval

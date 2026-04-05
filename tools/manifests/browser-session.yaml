@@ -1,0 +1,6 @@
+capability: browser.session
+provider: host-native
+mode: interactive
+description: Interactive browser session when the host supports live web navigation.
+reads_context:
+- project/AGENTS.md

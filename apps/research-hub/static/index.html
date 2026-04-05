@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>openResearch Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Embedded research workspace</div>
+        <h1>openResearch Hub</h1>
+        <p class="hero-text">Browse the repo, inspect linked skills and agents, search design docs, and keep a readable view of the research graph without leaving your host environment.</p>
+        <div class="hero-actions">
+          <button id="refresh-all" class="btn btn-primary" type="button">Refresh workspace</button>
+          <a class="btn btn-secondary" href="/graph-studio/" target="_blank" rel="noreferrer">Open Graph Studio</a>
+        </div>
+      </div>
+      <div class="hero-side panel glass">
+        <div class="hero-stat">
+          <span class="label">Workspace health</span>
+          <strong id="health-status">Checking…</strong>
+        </div>
+        <div class="hero-stat">
+          <span class="label">Repository</span>
+          <strong id="repo-name">—</strong>
+        </div>
+        <div class="hero-stat">
+          <span class="label">Linked graph</span>
+          <strong id="graph-count">—</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="metrics" id="metrics"></section>
+
+    <section class="workspace-grid">
+      <aside class="sidebar stack">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Command search</h2>
+            <span class="pill">Ctrl/Cmd + K</span>
+          </div>
+          <div class="search-wrap">
+            <input id="search" type="search" placeholder="Search files, skills, agents, docs…" autocomplete="off">
+          </div>
+          <div id="search-empty" class="muted small">Type to search paths across the repo.</div>
+          <div id="search-results" class="result-list"></div>
+        </section>
+
+        <section class="panel grow">
+          <div class="panel-head">
+            <h2>Repository tree</h2>
+            <button id="collapse-tree" class="ghost-button" type="button">Collapse</button>
+          </div>
+          <div id="tree" class="tree"></div>
+        </section>
+      </aside>
+
+      <main class="content stack">
+        <section class="panel overview-panel">
+          <div class="panel-head split-head">
+            <div>
+              <h2>Workspace overview</h2>
+              <p class="muted">High-level shape of the embedded openResearch project.</p>
+            </div>
+            <span class="pill" id="top-level-count">0 roots</span>
+          </div>
+          <div class="overview-grid">
+            <article class="overview-card">
+              <h3>Repository summary</h3>
+              <div id="summary-cards" class="summary-cards"></div>
+            </article>
+            <article class="overview-card">
+              <h3>Graph snapshot</h3>
+              <div id="graph-meta" class="graph-meta"></div>
+            </article>
+            <article class="overview-card wide">
+              <h3>Top-level modules</h3>
+              <div id="top-level-tags" class="tag-cloud"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel viewer-panel">
+          <div class="panel-head split-head">
+            <div>
+              <h2>File viewer</h2>
+              <p id="file-meta" class="muted">Select a file from the tree or search results.</p>
+            </div>
+            <div class="viewer-actions">
+              <button id="copy-path" class="ghost-button" type="button" disabled>Copy path</button>
+            </div>
+          </div>
+          <pre id="file-content" class="viewer"><code>// No file selected yet.</code></pre>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

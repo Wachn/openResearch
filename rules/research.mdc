@@ -1,0 +1,8 @@
+---
+alwaysApply: true
+description: research rigor and traceability rules
+---
+- Prefer primary, official, or scholarly sources.
+- Label unsupported claims as tentative.
+- Separate facts, inferences, and open questions.
+- Normalize serious outputs into a ResearchPacket-compatible shape.

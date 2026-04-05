@@ -1,0 +1,20 @@
+name: evidence-matrix
+kind: skill
+category: quality
+description: maps candidate claims to supporting or conflicting evidence and downgrades
+  weak claims.
+links:
+  calls: []
+  reads_context:
+  - rules/research.mdc
+capabilities:
+  requires:
+  - citation.lookup
+artifacts:
+  consumes:
+  - source.assessment
+  - web.corpus
+  produces:
+  - evidence.packet
+ui:
+  group: quality

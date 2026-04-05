@@ -1,0 +1,21 @@
+name: paper-writer
+kind: skill
+category: writing
+description: drafts structured papers, sections, and rebuttal material from the normalized
+  packet.
+links:
+  calls:
+  - report-packager
+  reads_context:
+  - rules/writing.mdc
+capabilities:
+  requires:
+  - citation.lookup
+artifacts:
+  consumes:
+  - research.packet
+  - experiment.plan
+  produces:
+  - draft.paper
+ui:
+  group: writing

@@ -1,0 +1,24 @@
+name: comparison-research
+kind: skill
+category: analysis
+description: comparison-focused skill for symmetrical evaluation of two or more options
+  before packaging.
+links:
+  calls:
+  - paper-scout
+  - source-evaluator
+  - evidence-matrix
+  reads_context:
+  - rules/research.mdc
+capabilities:
+  requires:
+  - web.search
+  - scholar.search
+  - citation.lookup
+artifacts:
+  consumes:
+  - research.request
+  produces:
+  - comparison.packet
+ui:
+  group: analysis

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ResearchPacket",
+  "type": "object",
+  "required": [
+    "research_question",
+    "motivation_and_context",
+    "problem_to_solve",
+    "scope_and_assumptions",
+    "output_mode",
+    "method_or_evidence_basis",
+    "key_findings",
+    "citations"
+  ],
+  "properties": {
+    "research_question": {
+      "type": "string"
+    },
+    "motivation_and_context": {
+      "type": "string"
+    },
+    "problem_to_solve": {
+      "type": "string"
+    },
+    "scope_and_assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "output_mode": {
+      "enum": [
+        "standard-report",
+        "docx-ready",
+        "ppt-ready",
+        "notebook-markdown"
+      ]
+    },
+    "method_or_evidence_basis": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "key_findings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_by_theme": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "source_quality_assessment": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "conflicting_views_and_uncertainty": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "implications_or_recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "gaps_and_next_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "novelty_or_opportunity_signals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

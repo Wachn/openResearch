@@ -1,0 +1,36 @@
+name: research-pi
+kind: skill
+category: orchestration
+description: top-level research orchestrator that frames requests, chooses atomic
+  subskills, normalizes outputs into the canonical research packet, and sends final
+  packaging to report-packager.
+links:
+  calls:
+  - paper-scout
+  - comparison-research
+  - web-corpus-builder
+  - source-evaluator
+  - evidence-matrix
+  - novelty-gap-finder
+  - experiment-designer
+  - paper-writer
+  - patent-scout
+  - report-packager
+  reads_context:
+  - project/AGENTS.md
+  - rules/research.mdc
+  - rules/writing.mdc
+capabilities:
+  requires:
+  - web.search
+  - web.extract
+  - scholar.search
+  - citation.lookup
+artifacts:
+  consumes:
+  - research.request
+  produces:
+  - research.packet
+  - packaged.report
+ui:
+  group: orchestration
