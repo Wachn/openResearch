@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reading List | openResearch Workspace</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f1117;
+      --panel: #171923;
+      --border: rgba(255,255,255,0.08);
+      --accent: #6c5ce7;
+      --accent2: #00cec9;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Noto Sans SC", system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 32px; }
+    .hero { padding: 28px; border-radius: 22px; border: 1px solid var(--border); background: linear-gradient(135deg, rgba(108,92,231,0.15), rgba(0,206,201,0.08)); margin-bottom: 24px; }
+    h1, h2, h3 { margin: 0; }
+    p { color: var(--muted); line-height: 1.7; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 20px; }
+    .stat { padding: 16px; border-radius: 16px; border: 1px solid var(--border); background: rgba(255,255,255,0.04); }
+    .stat strong { display: block; font-size: 26px; margin-bottom: 4px; }
+    .board { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .column { border-radius: 20px; border: 1px solid var(--border); background: var(--panel); overflow: hidden; }
+    .column-head { padding: 18px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.03); }
+    .column-head p { margin: 8px 0 0; }
+    .column-body { display: grid; gap: 12px; padding: 18px; }
+    .paper { padding: 16px; border-radius: 16px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .tag { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: var(--muted); font-size: 12px; }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    @media (max-width: 980px) { .board, .stats { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Reading List Dashboard</h1>
+      <p>A hub-visible three-column workflow for papers to read, papers currently in review, and papers already condensed into reusable notes.</p>
+      <div class="stats">
+        <div class="stat"><strong>3</strong><span>Total papers</span></div>
+        <div class="stat"><strong>1</strong><span>To read</span></div>
+        <div class="stat"><strong>1</strong><span>Reading</span></div>
+        <div class="stat"><strong>1</strong><span>Done</span></div>
+      </div>
+    </section>
+    <section class="board">
+      <article class="column">
+        <div class="column-head">
+          <h2>To Read</h2>
+          <p>High-priority items discovered through paper-scout.</p>
+        </div>
+        <div class="column-body">
+          <div class="paper">
+            <h3>RLVR: Reinforcement Learning with Verifiable Rewards</h3>
+            <p>Zhang et al. · queued for profile-aware relevance review.</p>
+            <div class="meta">
+              <span class="tag">RL</span>
+              <span class="tag">Verification</span>
+              <span class="tag">Score 4.2</span>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="column">
+        <div class="column-head">
+          <h2>Reading</h2>
+          <p>Items currently being condensed into notes or synthesis packets.</p>
+        </div>
+        <div class="column-body">
+          <div class="paper">
+            <h3>Verifiable Rewards for Agentic Planning</h3>
+            <p>Lee et al. · active note generation before synthesis.</p>
+            <div class="meta">
+              <span class="tag">Planning</span>
+              <span class="tag">Agents</span>
+              <span class="tag">Score 4.1</span>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="column">
+        <div class="column-head">
+          <h2>Done</h2>
+          <p>Completed reads with linked notes for reuse by synthesis and paper-writer.</p>
+        </div>
+        <div class="column-body">
+          <div class="paper">
+            <h3>AutoRefine: Search and Refine During Think</h3>
+            <p>Shi et al. · condensed into a DNL note and ready for synthesis.</p>
+            <div class="meta">
+              <span class="tag">LLM Reasoning</span>
+              <span class="tag">RAG</span>
+              <span class="tag">Score 4.5</span>
+            </div>
+            <p><a href="/preview?path=research-workspace%2Fnotes%2Fautorefine-dnl.md">Open linked note</a></p>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+</body>
+</html>

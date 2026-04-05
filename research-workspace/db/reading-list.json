@@ -1,0 +1,35 @@
+{
+  "last_updated": "2026-04-05",
+  "papers": [
+    {
+      "arxiv_id": "2503.19823",
+      "title": "AutoRefine: Search and Refine During Think",
+      "authors": "Shi et al.",
+      "date_added": "2026-04-05",
+      "status": "done",
+      "score": 4.5,
+      "tags": ["LLM Reasoning", "RAG"],
+      "note_link": "research-workspace/notes/autorefine-dnl.md"
+    },
+    {
+      "arxiv_id": "2503.00001",
+      "title": "RLVR: Reinforcement Learning with Verifiable Rewards",
+      "authors": "Zhang et al.",
+      "date_added": "2026-04-05",
+      "status": "to_read",
+      "score": 4.2,
+      "tags": ["RL", "Verification"],
+      "note_link": ""
+    },
+    {
+      "arxiv_id": "2502.00002",
+      "title": "Verifiable Rewards for Agentic Planning",
+      "authors": "Lee et al.",
+      "date_added": "2026-04-05",
+      "status": "reading",
+      "score": 4.1,
+      "tags": ["Planning", "Agents"],
+      "note_link": ""
+    }
+  ]
+}
