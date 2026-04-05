@@ -1,20 +1,24 @@
 name: paper-scout
 kind: skill
 category: retrieval
-description: builds a high-recall reading queue from scholarly and official sources
-  before synthesis.
+description: builds a profile-aware reading queue from scholarly and official sources
+  before deep reading and synthesis.
 links:
-  calls: []
+  calls:
+  - research-profile
   reads_context:
   - project/AGENTS.md
 capabilities:
   requires:
   - web.search
   - scholar.search
+  - web.extract
 artifacts:
   consumes:
   - research.request
+  - research.profile
   produces:
   - corpus.queue
+  - reading.queue
 ui:
   group: retrieval

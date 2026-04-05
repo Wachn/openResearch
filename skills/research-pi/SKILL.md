@@ -28,21 +28,21 @@ This skill is the root orchestrator. Keep the full research logic here, but rout
 ### Routing flow
 
 1. Frame the research question, motivation, decision support need, scope, output mode, and language.
-2. Choose the research path:
-   - single-topic research -> `paper-scout`, `web-corpus-builder`, `source-evaluator`, `evidence-matrix`, `novelty-gap-finder`
-   - multi-option comparison -> `comparison-research`, `source-evaluator`, `evidence-matrix`
-   - experiment-centric research -> `experiment-designer`, `paper-writer`
-   - prior-art or patent work -> `patent-scout`, `evidence-matrix`
-3. Use host capabilities for retrieval and citation work, especially `web.search`, `web.extract`, `scholar.search`, and `citation.lookup`.
-4. Normalize all serious outputs into the canonical `ResearchPacket`.
-5. Send the final medium-specific packaging step to `report-packager`.
-6. Emit graph-friendly run metadata when the host supports it.
+2. Apply **Routing Flow 0 — base activation overlay** when the request needs idea-centric work, manuscript work, or patent work. This is not a separate user-facing feature. It is the always-available base path that activates `research-profile`, `paper-scout`, `paper-reader`, `reading-list`, and `synthesis`, then brings in `paper-writer` or `patent-scout` only when the request actually needs them.
+3. Choose the main research path:
+   - **Routing Flow 1 / Feature 1:** single-topic research -> `research-profile`, `paper-scout`, `paper-reader`, `reading-list`, `synthesis`, `web-corpus-builder`, `source-evaluator`, `evidence-matrix`, `novelty-gap-finder`
+   - **Routing Flow 2 / Feature 2:** multi-option comparison -> `research-profile`, `paper-scout`, `paper-reader`, `reading-list`, `synthesis`, `comparison-research`, `source-evaluator`, `evidence-matrix`
+4. Use host capabilities for retrieval and citation work, especially `web.search`, `web.extract`, `scholar.search`, and `citation.lookup`.
+5. Normalize all serious outputs into the canonical `ResearchPacket`.
+6. Apply **Routing Flow 3 — publish overlay** when the result needs a visible structured deliverable, and send that packaging step to `report-packager` so it can emit publishable files under `research-workspace/reports/`.
+7. Emit graph-friendly run metadata when the host supports it.
 
 ### Portability rules
 
 - Ask for capability names, not vendor APIs.
 - Keep provider credentials and host-specific registration outside this skill.
 - Assume the host owns execution, auth, scheduling, and UI.
+- In the first iteration, stay skill-first. Do not require agent profiles for the main research workflow when linked atomic skills are sufficient.
 - Prefer linked atomic skills over expanding every specialized task into this file.
 - Keep markdown and manifest metadata aligned, since this repo treats metadata as routing truth.
 
@@ -64,10 +64,14 @@ This skill is host-portable. It may run in hosts that bind `web.search`, `web.ex
 **When to route to linked subskills instead of doing everything inline:**
 
 - corpus discovery across papers and official materials -> `paper-scout`
+- deep reading and structured note extraction -> `paper-reader`
+- reading workflow maintenance and dashboard state -> `reading-list`
+- research direction and preference alignment -> `research-profile`
 - deep website or documentation hub collection -> `web-corpus-builder`
 - explicit authority, recency, bias, and corroboration scoring -> `source-evaluator`
 - claim tracing, evidence mapping, and support matrices -> `evidence-matrix`
 - gap, novelty, and opportunity synthesis -> `novelty-gap-finder`
+- idea synthesis from accumulated reading notes -> `idea-generator`
 - side-by-side option analysis -> `comparison-research`
 - experiment planning and paper-ready method framing -> `experiment-designer`
 - paper-style writeups after research is complete -> `paper-writer`
@@ -80,6 +84,26 @@ This skill is host-portable. It may run in hosts that bind `web.search`, `web.ex
 - Treat provider-specific search, crawl, extract, or scholar tools as interchangeable bindings behind the same capability names.
 - Never put API keys, tokens, or provider-specific credential steps in this file.
 - If the host exposes extra retrieval tools, use them only when they fit the same evidence standards and routing model.
+
+### Exact capability-manifest paths
+
+The abstract capability names used in this skill are not placeholders without a home. In this repo, the current bindings live at:
+
+- `web.search` -> `tools/manifests/tavily-web-search.yaml`
+- `web.extract` -> `tools/manifests/scrapling-web-extract.yaml`
+- `scholar.search` -> `tools/manifests/scholar-search.yaml`
+- `citation.lookup` -> `tools/manifests/citation-lookup.yaml`
+
+Related concrete repo paths that support local evidence and report browsing:
+
+- local repo indexing -> `packages/openresearch_core/repo_index.py`
+- local hub API -> `apps/research-hub/server.py`
+
+Related exact skill paths for arXiv-first paper discovery and synthesis:
+
+- arXiv-first discovery logic -> `skills/paper-scout/SKILL.md`
+- reading-note condensation -> `skills/paper-reader/SKILL.md`
+- multi-source condensation -> `skills/synthesis/SKILL.md`
 
 ## General retrieval best practices
 
@@ -105,8 +129,10 @@ This skill is host-portable. It may run in hosts that bind `web.search`, `web.ex
 | Full article or docs extraction | `web.extract` | `web-corpus-builder` for multi-page collection |
 | Deep website dive | `web-corpus-builder` | direct `web.extract` on selected URLs |
 | Paper and academic discovery | `scholar.search` or `paper-scout` | `web.search` when scholarship is sparse |
+| arXiv-first paper discovery | `paper-scout` using arXiv API + `web.extract` | `scholar.search` |
 | Source scoring and corroboration | `source-evaluator` | inline evaluation for small tasks |
 | Claim traceability | `evidence-matrix` | inline citations for light tasks |
+| Many-source condensation | `synthesis` | manual synthesis |
 | Gap and novelty analysis | `novelty-gap-finder` | manual synthesis |
 | Comparison workflow | `comparison-research` | inline comparison for very small requests |
 | Final report packaging | `report-packager` | direct markdown only when no packager exists |
@@ -134,30 +160,35 @@ Do not trigger for casual chat, trivial one-hop factual lookups, pure creative b
 
 ## Core Capabilities
 
-When useful, apply these capabilities:
+These are not random labels. They are orchestration labels backed by concrete skills, capability manifests, or local code paths.
 
-- research planning
-- web-first grounding
-- scholar-first grounding
-- local repository search
-- source evaluation
-- structured extraction
-- synthesis
-- conflicting-view analysis
-- gap detection
-- novelty discovery
-- patent idea discovery
-- report generation
-- citation generation
+| Label | Backed by | Exact path |
+|---|---|---|
+| research planning | root orchestration in this skill | `skills/research-pi/SKILL.md` |
+| web-first grounding | generic web discovery binding plus deep site collection | `tools/manifests/tavily-web-search.yaml`, `skills/web-corpus-builder/SKILL.md` |
+| scholar-first grounding | scholarly binding plus arXiv-first discovery workflow | `tools/manifests/scholar-search.yaml`, `skills/paper-scout/SKILL.md` |
+| local repository search | repo index and hub api | `packages/openresearch_core/repo_index.py`, `apps/research-hub/server.py` |
+| source evaluation | explicit evidence scoring skill | `skills/source-evaluator/SKILL.md` |
+| structured extraction | web extract binding and reading-note skill | `tools/manifests/scrapling-web-extract.yaml`, `skills/paper-reader/SKILL.md` |
+| synthesis | condensed multi-source analysis skill | `skills/synthesis/SKILL.md` |
+| conflicting-view analysis | comparison and evidence traceability | `skills/comparison-research/SKILL.md`, `skills/evidence-matrix/SKILL.md` |
+| gap detection | unresolved-question and whitespace detection | `skills/novelty-gap-finder/SKILL.md` |
+| novelty discovery | opportunity and research-angle synthesis | `skills/novelty-gap-finder/SKILL.md`, `skills/idea-generator/SKILL.md` |
+| patent idea discovery | prior-art and patent-oriented routing | `skills/patent-scout/SKILL.md` |
+| report generation | publish-ready packaging and manuscript support | `skills/report-packager/SKILL.md`, `skills/paper-writer/SKILL.md` |
+| citation generation | citation binding | `tools/manifests/citation-lookup.yaml` |
 
 **openResearch linked execution capabilities:**
 
 - **Top-level framing and routing:** keep framing, workflow selection, and packet normalization in this root skill
 - **Single-topic evidence collection:** route paper and web collection to `paper-scout` and `web-corpus-builder`
+- **Profile-aware discovery and review:** use `research-profile`, `paper-reader`, and `reading-list` when the workflow needs personalized discovery, durable reading notes, or a visible reading queue
+- **Condensed synthesis before packaging or tradeoff work:** use `synthesis` when the source set is too large or too heterogeneous for direct root-skill summarization
 - **Comparison execution:** route balanced multi-option analysis to `comparison-research`
 - **Evidence quality scoring:** route scoring and bias checks to `source-evaluator`
 - **Claim traceability:** route structured support mapping to `evidence-matrix`
 - **Novelty and gap work:** route unresolved questions and opportunity signals to `novelty-gap-finder`
+- **Idea generation:** route cross-paper research directions to `idea-generator`
 - **Experiment and paper workflows:** use `experiment-designer` and `paper-writer` when the request becomes research-method or manuscript-centric
 - **Prior art work:** use `patent-scout` for prior-art and patent-facing tasks
 - **Final packaging:** use `report-packager` for the final medium
@@ -273,10 +304,31 @@ For the same research task:
 
 ## Two Main Features
 
+The two user-facing major features remain Feature 1 and Feature 2. Feature 0 is an internal base overlay that automatically activates profile, reading, synthesis, manuscript, or patent helpers when the request needs them.
+
 | Feature | Description | When to Use |
 |---------|-------------|-------------|
 | **Thorough Research** | Full research workflow with planning, evidence gathering, evaluation, synthesis, and report packaging | When the user explicitly requests research on a topic or multiple questions |
 | **Multi-disciplinary Comparison Research** | Comparative research across 2 or more areas, products, technologies, markets, or approaches | When the user asks for research that compares multiple options or domains |
+
+## Feature 0: Base Activation Overlay
+
+Feature 0 is not a standalone user-facing mode. It is the default activation layer that enriches Feature 1 or Feature 2 when the request implies any of the following:
+
+- idea generation
+- manuscript preparation
+- patent-oriented follow-up
+- many-source condensation before final synthesis
+
+When Feature 0 activates, route through:
+
+- `research-profile`
+- `paper-scout`
+- `paper-reader`
+- `reading-list`
+- `synthesis`
+
+Then bring in `idea-generator`, `paper-writer`, or `patent-scout` only when the request actually needs those downstream outcomes.
 
 ---
 
@@ -297,9 +349,10 @@ Perform a complete research workflow and generate one evidence-backed deliverabl
 - Detect the requested output mode and language before gathering evidence.
 - If the request is ambiguous, choose the simplest reasonable interpretation, state it briefly, and continue.
 - Select the routing path early so retrieval and evaluation can be delegated cleanly:
-  - broad paper or academic discovery -> `paper-scout`
-  - multi-page web or documentation collection -> `web-corpus-builder`
-  - heavy evidence scoring -> `source-evaluator`
+   - broad paper or academic discovery -> `paper-scout`
+   - long-form source condensation or many-note summarization -> `synthesis`
+   - multi-page web or documentation collection -> `web-corpus-builder`
+   - heavy evidence scoring -> `source-evaluator`
   - traceability-heavy or claim-sensitive work -> `evidence-matrix`
   - novelty, gap, or opportunity synthesis -> `novelty-gap-finder`
 
@@ -387,9 +440,11 @@ Do not dump raw notes. Synthesize first, then package.
 
 ### openResearch synthesis routing
 
+- Route many-note, many-paper, or mixed-source condensation to `synthesis` before final packaging when the evidence set is too large to reason over cleanly in one pass.
+- Use `synthesis` as the preferred bridge between `paper-reader` outputs and final report packaging whenever the request requires abridged or condensed source understanding.
 - Route novelty, gap, and opportunity synthesis to `novelty-gap-finder` when the request explicitly needs unresolved questions, whitespace, or opportunity framing.
 - Normalize the final result into the canonical `ResearchPacket` before medium-specific formatting.
-- Send final markdown, docx-ready, ppt-ready, or notebook-specific packaging to `report-packager` when available.
+- Send final markdown, docx-ready, ppt-ready, notebook-specific, or published html packaging to `report-packager` when available.
 
 ---
 
@@ -442,6 +497,11 @@ Keep source coverage balanced so one option is not under-researched.
   - vendor incentives
   - sampling bias
 - Provide scenario-based guidance rather than forcing a single winner when the tradeoffs are real.
+
+### openResearch tradeoff routing
+
+- Use `synthesis` before tradeoff packaging when each option has many sources, long notes, or mixed literature plus web evidence.
+- Use `evidence-matrix` when tradeoff claims must stay traceable to concrete sources.
 
 ## Step 4: Decision Packaging
 

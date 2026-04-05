@@ -2,13 +2,17 @@ const state = {
   summary: null,
   graph: null,
   tree: null,
+  workspace: null,
+  workspaceTree: null,
   currentPath: '',
 };
 
 const el = {
   metrics: document.getElementById('metrics'),
   healthStatus: document.getElementById('health-status'),
+  healthStatusBadge: document.getElementById('health-status-badge'),
   repoName: document.getElementById('repo-name'),
+  repoDisplay: document.getElementById('repo-display'),
   graphCount: document.getElementById('graph-count'),
   search: document.getElementById('search'),
   searchEmpty: document.getElementById('search-empty'),
@@ -20,9 +24,19 @@ const el = {
   topLevelTags: document.getElementById('top-level-tags'),
   fileMeta: document.getElementById('file-meta'),
   fileContent: document.getElementById('file-content'),
+  openPreview: document.getElementById('open-preview'),
+  reportPreviewWrap: document.getElementById('report-preview-wrap'),
+  reportPreview: document.getElementById('report-preview'),
   copyPath: document.getElementById('copy-path'),
   refreshAll: document.getElementById('refresh-all'),
+  quickRefresh: document.getElementById('quick-refresh'),
   collapseTree: document.getElementById('collapse-tree'),
+  workspaceRoot: document.getElementById('workspace-root'),
+  workspaceUpdated: document.getElementById('workspace-updated'),
+  workspaceStats: document.getElementById('workspace-stats'),
+  workspaceBoard: document.getElementById('workspace-board'),
+  workspaceNote: document.getElementById('workspace-note'),
+  workspaceAssets: document.getElementById('workspace-assets'),
 };
 
 async function api(path) {
@@ -50,10 +64,51 @@ function sizeLabel(bytes) {
   return `${value.toFixed(value >= 10 || idx === 0 ? 0 : 1)} ${units[idx]}`;
 }
 
+function titleFromPath(path) {
+  const name = path.split('/').pop() || path;
+  return name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+}
+
+function previewUrl(path) {
+  return `/preview?path=${encodeURIComponent(path)}`;
+}
+
+function updatePreview(path, binary = false) {
+  const previewable = !binary && path.startsWith('research-workspace/reports/') && path.endsWith('.html');
+  if (!previewable) {
+    el.openPreview.hidden = true;
+    el.openPreview.href = '#';
+    el.reportPreviewWrap.hidden = true;
+    el.reportPreview.src = 'about:blank';
+    return;
+  }
+
+  const href = previewUrl(path);
+  el.openPreview.hidden = false;
+  el.openPreview.href = href;
+  el.reportPreviewWrap.hidden = false;
+  el.reportPreview.src = href;
+}
+
 function setHealth(ok, repo = '') {
-  el.healthStatus.textContent = ok ? 'Ready' : 'Unavailable';
-  el.healthStatus.className = ok ? 'status-ok' : 'status-bad';
-  if (repo) el.repoName.textContent = repo;
+  if (el.healthStatus) {
+    el.healthStatus.textContent = ok ? 'Ready' : 'Unavailable';
+    el.healthStatus.className = ok ? 'status-ok' : 'status-bad';
+  }
+  
+  // Update health status badge in install banner
+  if (el.healthStatusBadge) {
+    el.healthStatusBadge.textContent = ok ? 'Ready' : 'Unavailable';
+    el.healthStatusBadge.className = ok ? 'status-ok' : 'status-bad';
+  }
+  
+  // Update repo display
+  if (repo && el.repoDisplay) {
+    el.repoDisplay.textContent = repo;
+  }
+  if (repo && el.repoName) {
+    el.repoName.textContent = repo;
+  }
 }
 
 function renderMetrics(summary) {
@@ -101,6 +156,144 @@ function renderGraph(graph) {
   `).join('');
 }
 
+function flattenWorkspaceTree(node, output = []) {
+  if (!node) {
+    return output;
+  }
+  output.push(node);
+  (node.children || []).forEach(child => {
+    flattenWorkspaceTree(child, output);
+  });
+  return output;
+}
+
+function normalizeWorkspacePath(path) {
+  return (path || '').replace(/\/+$/, '');
+}
+
+function findWorkspaceNode(path) {
+  if (!state.workspaceTree) {
+    return null;
+  }
+  const normalizedPath = normalizeWorkspacePath(path);
+  return flattenWorkspaceTree(state.workspaceTree, []).find(node => normalizeWorkspacePath(node.path) === normalizedPath) || null;
+}
+
+function renderDirectory(path) {
+  const node = findWorkspaceNode(path);
+  if (!node || node.kind !== 'dir') {
+    el.fileMeta.textContent = `Could not open folder ${path}`;
+    el.fileContent.textContent = 'Folder was not found in the workspace tree.';
+    el.copyPath.disabled = true;
+    return;
+  }
+
+  state.currentPath = node.path;
+  const children = (node.children || []).slice().sort((a, b) => {
+    if (a.kind !== b.kind) {
+      return a.kind === 'dir' ? -1 : 1;
+    }
+    return a.path.localeCompare(b.path);
+  });
+
+  el.fileMeta.textContent = `${node.path} · directory · ${children.length} item${children.length === 1 ? '' : 's'}`;
+  el.fileContent.textContent = children.length
+    ? children.map(child => `${child.kind === 'dir' ? '[dir] ' : '[file]'}${child.path}${child.size ? ` · ${sizeLabel(child.size)}` : ''}`).join('\n')
+    : 'This folder is ready, but currently empty.';
+  el.copyPath.disabled = false;
+  updatePreview('');
+}
+
+function bindWorkspaceInteractions() {
+  document.querySelectorAll('[data-open-path]').forEach(button => {
+    button.addEventListener('click', () => openFile(button.dataset.openPath));
+  });
+  document.querySelectorAll('[data-open-dir]').forEach(button => {
+    button.addEventListener('click', () => renderDirectory(button.dataset.openDir));
+  });
+}
+
+function renderWorkspace(workspace) {
+  el.workspaceRoot.textContent = workspace.root || 'research-workspace/';
+  el.workspaceUpdated.textContent = workspace.exists
+    ? `${formatNumber(workspace.file_count)} assets · ${sizeLabel(workspace.total_size)}`
+    : 'Workspace root has not been created yet';
+
+  el.workspaceStats.innerHTML = (workspace.stats || []).map(item => `
+    <article class="workspace-stat tone-${item.tone}">
+      <span class="workspace-stat-value">${item.value}</span>
+      <span class="workspace-stat-label">${item.label}</span>
+    </article>
+  `).join('');
+
+  el.workspaceBoard.innerHTML = (workspace.sections || []).map(section => {
+    const folderPath = `research-workspace/${section.key === 'library' ? 'repos' : section.key}/`;
+    return `
+      <section class="workspace-column tone-${section.tone}">
+        <div class="workspace-column-head">
+          <div>
+            <h3>${section.label}</h3>
+            <p>${section.count} items</p>
+          </div>
+          <span class="workspace-dot tone-${section.tone}"></span>
+        </div>
+        <div class="workspace-column-body">
+          ${section.items.length ? section.items.map(item => `
+            <button type="button" class="workspace-paper-card is-interactive" data-open-path="${item.path}">
+              <div class="workspace-paper-head">
+                <h4>${titleFromPath(item.path)}</h4>
+                <span class="workspace-score">${item.extension || item.kind}</span>
+              </div>
+              <p>${item.path}</p>
+              <div class="workspace-tags">
+                <span>${item.kind}</span>
+                <span>${sizeLabel(item.size)}</span>
+              </div>
+            </button>
+          `).join('') : `
+            <button type="button" class="workspace-empty workspace-folder-link" data-open-dir="${folderPath}">
+              ${section.description}\n\nOpen ${folderPath}.
+            </button>
+          `}
+        </div>
+      </section>
+    `;
+  }).join('');
+
+  const featured = workspace.featured;
+  if (featured) {
+    el.workspaceNote.innerHTML = `
+      <h4>${titleFromPath(featured.path)}</h4>
+      <p class="workspace-summary-line">Featured from ${featured.path}</p>
+      <p>Open this generated asset in the viewer to review it, or use the publish preview when the artifact is an HTML report.</p>
+      <button type="button" class="ghost-button workspace-open" data-open-path="${featured.path}">Open featured asset</button>
+    `;
+  } else {
+    el.workspaceNote.innerHTML = `
+      <h4>Workspace guide</h4>
+      <p class="workspace-summary-line">No generated artifacts yet</p>
+      <ul>
+        <li><button type="button" class="inline-workspace-link" data-open-dir="research-workspace/reports/">Open reports folder</button></li>
+        <li><button type="button" class="inline-workspace-link" data-open-dir="research-workspace/notes/">Open literature notes folder</button></li>
+        <li><button type="button" class="inline-workspace-link" data-open-dir="research-workspace/repos/">Open repo library folder</button></li>
+      </ul>
+    `;
+  }
+
+  el.workspaceAssets.innerHTML = (workspace.storage || []).map(asset => `
+    <button type="button" class="workspace-asset workspace-folder-link" data-open-dir="${asset.path}">
+      <div class="workspace-asset-path">${asset.path}</div>
+      <div class="workspace-tags">
+        <span>${asset.label}</span>
+        <span>${asset.count} items</span>
+        <span>${sizeLabel(asset.size)}</span>
+      </div>
+    </button>
+  `).join('');
+
+  bindWorkspaceInteractions();
+}
+
 function createTreeNode(node) {
   const item = document.createElement('div');
   item.className = 'tree-item';
@@ -127,7 +320,9 @@ function createTreeNode(node) {
 
     const children = document.createElement('div');
     children.className = 'tree-children';
-    (node.children || []).forEach(child => children.appendChild(createTreeNode(child)));
+    (node.children || []).forEach(child => {
+      children.appendChild(createTreeNode(child));
+    });
     item.appendChild(children);
     return item;
   }
@@ -143,7 +338,9 @@ function createTreeNode(node) {
 
 function renderTree(tree) {
   el.tree.innerHTML = '';
-  (tree.children || []).forEach(child => el.tree.appendChild(createTreeNode(child)));
+  (tree.children || []).forEach(child => {
+    el.tree.appendChild(createTreeNode(child));
+  });
 }
 
 function renderSearchResults(results, query) {
@@ -168,8 +365,8 @@ function renderSearchResults(results, query) {
       </button>
     </div>
   `).join('');
-  el.searchResults.querySelectorAll('button[data-path]').forEach(btn => {
-    btn.addEventListener('click', () => openFile(btn.dataset.path));
+  el.searchResults.querySelectorAll('button[data-path]').forEach(button => {
+    button.addEventListener('click', () => openFile(button.dataset.path));
   });
 }
 
@@ -177,38 +374,49 @@ async function openFile(path) {
   try {
     const data = await api(`/api/file?path=${encodeURIComponent(path)}`);
     state.currentPath = data.path;
-    el.fileMeta.textContent = `${data.path} · ${data.kind}${data.truncated ? ' · truncated preview' : ''}`;
+    const flags = [data.kind];
+    if (data.binary) flags.push('binary preview');
+    if (data.truncated) flags.push('truncated preview');
+    el.fileMeta.textContent = `${data.path} · ${flags.join(' · ')} · ${sizeLabel(data.size)}`;
     el.fileContent.textContent = data.content || '';
     el.copyPath.disabled = false;
+    updatePreview(data.path, data.binary);
   } catch (error) {
     el.fileMeta.textContent = `Could not open ${path}`;
     el.fileContent.textContent = String(error.message || error);
     el.copyPath.disabled = true;
+    updatePreview('');
   }
 }
 
 async function refreshAll() {
   try {
-    const [health, summary, graph, tree] = await Promise.all([
+    const [health, summary, graph, tree, workspace, workspaceTree] = await Promise.all([
       api('/api/health'),
       api('/api/summary'),
       api('/api/graph'),
       api('/api/tree'),
+      api('/api/workspace/summary'),
+      api('/api/workspace/tree'),
     ]);
 
     state.summary = summary;
     state.graph = graph;
     state.tree = tree;
+    state.workspace = workspace;
+    state.workspaceTree = workspaceTree;
 
     setHealth(Boolean(health.ok), health.repo);
     renderMetrics(summary);
     renderSummary(summary);
     renderGraph(graph);
+    renderWorkspace(workspace);
     renderTree(tree);
   } catch (error) {
     setHealth(false);
     el.fileMeta.textContent = 'Hub failed to load API data';
     el.fileContent.textContent = String(error.message || error);
+    updatePreview('');
   }
 }
 
@@ -235,6 +443,14 @@ async function handleSearchInput() {
 function bindEvents() {
   el.search.addEventListener('input', handleSearchInput);
   el.refreshAll.addEventListener('click', refreshAll);
+  
+  // Quick refresh button (already handled in inline script, but add here for completeness)
+  if (el.quickRefresh) {
+    el.quickRefresh.addEventListener('click', () => {
+      el.refreshAll.click();
+    });
+  }
+  
   el.collapseTree.addEventListener('click', () => {
     document.querySelectorAll('.tree-item').forEach(item => {
       if (item.querySelector('.tree-children')) item.classList.add('collapsed');
@@ -246,7 +462,7 @@ function bindEvents() {
     el.copyPath.textContent = 'Copied';
     setTimeout(() => { el.copyPath.textContent = 'Copy path'; }, 1200);
   });
-  window.addEventListener('keydown', (event) => {
+  window.addEventListener('keydown', event => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
       event.preventDefault();
       el.search.focus();

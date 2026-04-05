@@ -6,12 +6,17 @@ description: top-level research orchestrator that frames requests, chooses atomi
   packaging to report-packager.
 links:
   calls:
+  - research-profile
   - paper-scout
+  - paper-reader
+  - reading-list
+  - synthesis
   - comparison-research
   - web-corpus-builder
   - source-evaluator
   - evidence-matrix
   - novelty-gap-finder
+  - idea-generator
   - experiment-designer
   - paper-writer
   - patent-scout

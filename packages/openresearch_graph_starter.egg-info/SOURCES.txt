@@ -11,4 +11,3 @@ packages/openresearch_graph_starter.egg-info/SOURCES.txt
 packages/openresearch_graph_starter.egg-info/dependency_links.txt
 packages/openresearch_graph_starter.egg-info/requires.txt
 packages/openresearch_graph_starter.egg-info/top_level.txt
-tests/test_graph_builder.py

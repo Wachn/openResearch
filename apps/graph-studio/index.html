@@ -4,30 +4,49 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Graph Studio</title>
-  <style>
-    body { margin:0; font-family: Inter, system-ui, sans-serif; background:#08111f; color:#e5eefc; }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
-    .card { background: rgba(12,23,41,.78); border:1px solid rgba(148,163,184,.14); border-radius: 18px; padding: 18px; }
-    pre { white-space: pre-wrap; background:#020812; border-radius: 14px; padding:16px; overflow:auto; }
-    a { color:#a5d8ff; }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="wrap">
-    <h1>Graph Studio</h1>
-    <p>Minimal graph inspector for the openResearch Hub starter. Use the Hub for navigation and open this page for raw graph payloads.</p>
-    <p><a href="/">Back to Hub</a></p>
-    <div class="card">
-      <h2>Graph payload</h2>
-      <pre id="out">Loading…</pre>
+  <header>
+    <div>
+      <h1>Graph Studio</h1>
+      <p>Inspect the openResearch graph and focus the `research-pi` skill chain.</p>
     </div>
-  </div>
-  <script>
-    fetch('/api/graph').then(r => r.json()).then(data => {
-      document.getElementById('out').textContent = JSON.stringify(data, null, 2);
-    }).catch(err => {
-      document.getElementById('out').textContent = String(err);
-    });
-  </script>
+    <div id="metrics" class="metrics" aria-label="Graph metrics"></div>
+  </header>
+
+  <section class="toolbar">
+    <input id="search" type="search" placeholder="Search nodes">
+    <button id="focus-chain" type="button" class="toolbar-button is-active">Focus `research-pi` chain</button>
+    <a class="toolbar-link" href="/">Back to Hub</a>
+    <span class="canvas-hint">Drag nodes to rearrange. Scroll the canvas to inspect lower links.</span>
+    <div class="legend" aria-label="Edge legend">
+      <span><i class="legend-line calls"></i>Calls</span>
+      <span><i class="legend-line produces"></i>Produces</span>
+      <span><i class="legend-line consumes"></i>Consumes</span>
+      <span><i class="legend-line reads"></i>Reads</span>
+      <span><i class="legend-line requires"></i>Requires</span>
+    </div>
+  </section>
+
+  <main>
+    <section class="canvas-wrap">
+      <svg id="canvas" viewBox="0 0 1600 1200" role="img" aria-label="Graph visualization"></svg>
+    </section>
+    <aside>
+      <section class="panel-section">
+        <h2>`research-pi` chain</h2>
+        <div id="chain-summary" class="muted">Loading chain...</div>
+        <div id="chain-list" class="chain-list"></div>
+      </section>
+      <section class="panel-section">
+        <h2>Selection</h2>
+        <pre id="selection">Select a node to inspect its links.</pre>
+      </section>
+    </aside>
+  </main>
+
+  <script src="graph.data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>

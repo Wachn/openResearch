@@ -6,44 +6,100 @@
   <title>openResearch Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Theme toggle button -->
+  <button id="theme-toggle" type="button" title="Toggle light/dark mode" style="position:fixed;top:16px;right:16px;z-index:9999;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);background:var(--bg-card);color:var(--text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;box-shadow:0 2px 8px rgba(0,0,0,.2);">🌙</button>
+
   <div class="app-shell">
-    <header class="hero">
-      <div class="hero-copy">
-        <div class="eyebrow">Embedded research workspace</div>
-        <h1>openResearch Hub</h1>
-        <p class="hero-text">Browse the repo, inspect linked skills and agents, search design docs, and keep a readable view of the research graph without leaving your host environment.</p>
-        <div class="hero-actions">
-          <button id="refresh-all" class="btn btn-primary" type="button">Refresh workspace</button>
-          <a class="btn btn-secondary" href="/graph-studio/" target="_blank" rel="noreferrer">Open Graph Studio</a>
+    <!-- Top navigation -->
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="#" class="nav-logo">🦞 openResearch Hub</a>
+        <div class="nav-links">
+          <a href="#workspace">Workspace</a>
+          <a href="#graph">Graph</a>
+          <a href="#research">Research</a>
+        </div>
+        <div class="nav-actions">
+          <button id="refresh-all" class="btn btn-primary" type="button">Refresh</button>
+          <a class="btn btn-secondary" href="/graph-studio/" target="_blank" rel="noreferrer">Graph Studio</a>
         </div>
       </div>
-      <div class="hero-side panel glass">
-        <div class="hero-stat">
-          <span class="label">Workspace health</span>
-          <strong id="health-status">Checking…</strong>
-        </div>
-        <div class="hero-stat">
-          <span class="label">Repository</span>
-          <strong id="repo-name">—</strong>
-        </div>
-        <div class="hero-stat">
-          <span class="label">Linked graph</span>
-          <strong id="graph-count">—</strong>
-        </div>
+    </nav>
+
+    <!-- Hero section -->
+    <section class="hero">
+      <div class="hero-badge">🦞 openResearch v2.0 · Embedded Research Workspace · 6 Core Capabilities</div>
+      <h1><span class="grad">openResearch</span><br>Your Embedded Research Companion</h1>
+      <p class="hero-sub">
+        From <strong>skill discovery</strong> to <strong>agent orchestration</strong>, from <strong>graph visualization</strong> to <strong>research workflow</strong>—<br>
+        Browse the repo, inspect linked skills and agents, search design docs, and keep a readable view of the research graph.
+      </p>
+      <div class="hero-actions">
+        <button id="quick-refresh" class="btn btn-primary" type="button">🚀 Quick refresh</button>
+        <a class="btn btn-secondary" href="#research">🎬 Research workspace</a>
       </div>
-    </header>
+    </section>
+
+    <!-- Install/quick start banner -->
+    <div class="install-banner">
+      <div class="install-label">⚡ Quick start — Embedded research workspace</div>
+      <div class="install-code">Browse skills, agents, and research artifacts directly from this hub. Use the search to find files, or explore the repository tree.</div>
+      <div class="install-note">Connected to <strong id="repo-display">openResearch repository</strong> <span class="install-meta">(<strong id="repo-name">openResearch</strong>)</span> · Workspace health: <span id="health-status-badge">Checking…</span> · Linked graph: <strong id="graph-count">—</strong></div>
+    </div>
 
     <section class="metrics" id="metrics"></section>
 
+    <!-- Capabilities grid -->
+    <section id="capabilities" class="section">
+      <div class="section-heading">
+        <h2><span class="grad">Core Capabilities</span></h2>
+        <p>Browse, search, and interact with the embedded openResearch project</p>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-card">
+          <div class="cap-icon icon-scout">🔍</div>
+          <h3>Repository Explorer</h3>
+          <div class="cap-en">Browse & Search</div>
+          <p>Navigate the entire repository structure, search files, skills, agents, and documentation with instant results.</p>
+          <span class="cap-trigger">Ctrl/Cmd + K to search</span>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon icon-reader">📊</div>
+          <h3>Graph Visualization</h3>
+          <div class="cap-en">Skill & Agent Graph</div>
+          <p>Visualize the dependency graph between skills, agents, and capabilities. See how research components connect.</p>
+          <span class="cap-trigger">Open Graph Studio</span>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon icon-list">🧠</div>
+          <h3>Research Workspace</h3>
+          <div class="cap-en">Paper Reader & Notes</div>
+          <p>Manage reading lists, paper notes, compiled literature bundles, and research artifacts in a dedicated workspace.</p>
+          <span class="cap-trigger">Research workflow</span>
+        </div>
+
+        <div class="cap-card">
+          <div class="cap-icon icon-publish">🧾</div>
+          <h3>Synthesis & Publish</h3>
+          <div class="cap-en">Condense & Publish</div>
+          <p>Turn reading notes and extracted source sets into condensed synthesis packets and published reports that can be previewed directly from the hub.</p>
+          <span class="cap-trigger">Synthesis workflow</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main workspace grid -->
     <section class="workspace-grid">
       <aside class="sidebar stack">
         <section class="panel">
           <div class="panel-head">
-            <h2>Command search</h2>
+            <h2>🔍 Command search</h2>
             <span class="pill">Ctrl/Cmd + K</span>
           </div>
           <div class="search-wrap">
@@ -55,8 +111,8 @@
 
         <section class="panel grow">
           <div class="panel-head">
-            <h2>Repository tree</h2>
-            <button id="collapse-tree" class="ghost-button" type="button">Collapse</button>
+            <h2>📁 Repository tree</h2>
+            <button id="collapse-tree" class="ghost-button" type="button">Collapse all</button>
           </div>
           <div id="tree" class="tree"></div>
         </section>
@@ -66,7 +122,7 @@
         <section class="panel overview-panel">
           <div class="panel-head split-head">
             <div>
-              <h2>Workspace overview</h2>
+              <h2>📊 Workspace overview</h2>
               <p class="muted">High-level shape of the embedded openResearch project.</p>
             </div>
             <span class="pill" id="top-level-count">0 roots</span>
@@ -87,22 +143,101 @@
           </div>
         </section>
 
+        <section id="research" class="panel research-workspace-panel">
+          <div class="panel-head split-head">
+            <div>
+              <h2>🧠 Research workspace</h2>
+              <p class="muted">A ResearchClaw-inspired surface for research profiles, reading lists, paper notes, synthesis packets, published reports, and repo collections.</p>
+            </div>
+            <span id="workspace-root" class="pill">research-workspace/</span>
+          </div>
+          <div class="workspace-showcase">
+            <div class="workspace-stage">
+              <div class="workspace-topbar">
+                <span class="workspace-logo">openResearch Workspace</span>
+                <span id="workspace-updated" class="workspace-date">Ready for generated artifacts</span>
+              </div>
+              <div id="workspace-stats" class="workspace-stats"></div>
+              <div id="workspace-board" class="workspace-board"></div>
+            </div>
+            <div class="workspace-side-stack">
+              <article class="workspace-card workspace-note-card">
+                <div class="workspace-card-head">
+                  <span class="workspace-card-icon">📝</span>
+                  <div>
+                    <h3>Synthesis & publish</h3>
+                    <p class="muted">Condensed note and published report view</p>
+                  </div>
+                </div>
+                <div id="workspace-note" class="workspace-note"></div>
+              </article>
+              <article class="workspace-card workspace-storage-card">
+                <div class="workspace-card-head">
+                  <span class="workspace-card-icon">🗂️</span>
+                  <div>
+                    <h3>Workspace storage</h3>
+                    <p class="muted">Local outputs generated by openResearch tools</p>
+                  </div>
+                </div>
+                <div id="workspace-assets" class="workspace-assets"></div>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section class="panel viewer-panel">
           <div class="panel-head split-head">
             <div>
-              <h2>File viewer</h2>
+              <h2>📄 File viewer</h2>
               <p id="file-meta" class="muted">Select a file from the tree or search results.</p>
             </div>
             <div class="viewer-actions">
+              <a id="open-preview" class="ghost-button" href="#" target="_blank" rel="noreferrer" hidden>Open preview</a>
               <button id="copy-path" class="ghost-button" type="button" disabled>Copy path</button>
             </div>
           </div>
           <pre id="file-content" class="viewer"><code>// No file selected yet.</code></pre>
+          <div id="report-preview-wrap" class="report-preview-wrap" hidden>
+            <iframe id="report-preview" class="report-preview" title="Published report preview"></iframe>
+          </div>
         </section>
       </main>
     </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <span>Built with ❤️ by <span class="footer-brand">openResearch</span> · Embedded research workspace</span>
+      <span>Powered by ResearchClaw design language · MIT License</span>
+    </footer>
   </div>
 
   <script src="app.js"></script>
+  <script>
+    // Theme toggle functionality
+    (() => {
+      var saved = localStorage.getItem('theme');
+      var btn;
+      if(saved === 'light') {
+        document.body.classList.add('light');
+        btn = document.getElementById('theme-toggle');
+        if(btn) btn.textContent = '☀️';
+      }
+    })();
+    
+    const toggleTheme = () => {
+      var isLight = document.body.classList.toggle('light');
+      var btn = document.getElementById('theme-toggle');
+      btn.textContent = isLight ? '☀️' : '🌙';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+    
+    // Attach theme toggle
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+    
+    // Quick refresh button
+    document.getElementById('quick-refresh').addEventListener('click', () => {
+      document.getElementById('refresh-all').click();
+    });
+  </script>
 </body>
 </html>

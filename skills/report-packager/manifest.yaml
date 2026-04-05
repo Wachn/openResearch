@@ -14,9 +14,11 @@ artifacts:
   consumes:
   - research.packet
   - comparison.packet
+  - synthesis.packet
   - draft.paper
   - patent.memo
   produces:
   - packaged.report
+  - published.report
 ui:
   group: packaging

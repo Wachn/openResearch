@@ -2,9 +2,11 @@ name: paper-writer
 kind: skill
 category: writing
 description: drafts structured papers, sections, and rebuttal material from the normalized
-  packet.
+  packet and ideation workflow.
 links:
   calls:
+  - idea-generator
+  - synthesis
   - report-packager
   reads_context:
   - rules/writing.mdc
@@ -15,7 +17,11 @@ artifacts:
   consumes:
   - research.packet
   - experiment.plan
+  - idea.packet
+  - synthesis.packet
   produces:
   - draft.paper
+  - rebuttal.draft
+  - published.report
 ui:
   group: writing
